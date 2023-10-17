@@ -21,6 +21,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-screen.blit(puffer_fish, (WIDTH/2, HEIGHT/2))
+    screen.blit(puffer_fish, (WIDTH/2, HEIGHT/2))
+    pygame.display.flip()
 
-pygame.display.flip()
