@@ -6,6 +6,7 @@ WIDTH = 800
 HEIGHT = 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
+puffer_fish = pygame.image.load('assets/images/puffer_fish.png')
 background = pygame.Surface((WIDTH, HEIGHT))
 background.fill((52, 140, 235))
 sand_height = 100
@@ -20,4 +21,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    pygame.display.flip()
+screen.blit(puffer_fish, (WIDTH/2, HEIGHT/2))
+
+pygame.display.flip()
