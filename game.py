@@ -1,18 +1,43 @@
 import pygame
-print("Hello EW200!")
+from random import randint
 
 pygame.init()
+clock = pygame.time.Clock()
 WIDTH = 800
 HEIGHT = 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
+
 puffer_fish = pygame.image.load('assets/images/puffer_fish.png')
+water_tile = pygame.image.load('assets/images/fishTile_089.png')
+sand_top_tile = pygame.image.load('assets/images/fishTile_021.png')
+sand_tile = pygame.image.load('assets/images/fishTile_126.png')
+plant_tile = pygame.image.load('assets/images/fishTile_032.png')
 background = pygame.Surface((WIDTH, HEIGHT))
-background.fill((52, 140, 235))
-sand_height = 100
-pygame.draw.rect(background, (250, 192, 85), (0, HEIGHT-sand_height, WIDTH, sand_height))
+tile_width = water_tile.get_width()
+tile_height = water_tile.get_height()
+
+#Water Tiles
+for x in range(0,WIDTH,tile_width):
+    for y in range(0,HEIGHT,tile_height):
+        background.blit(water_tile, (x,y))
+
+for x in range(0,WIDTH,tile_width):
+     background.blit(sand_tile, (x,HEIGHT-tile_height))
+
+for x in range(0,WIDTH,tile_width):
+    background.blit(sand_top_tile, (x,HEIGHT-2*tile_height))
+
+num_plants = 6
+for p in range(num_plants):
+    background.blit(plant_tile, (randint(0,WIDTH), randint(HEIGHT-3*tile_height, HEIGHT-1*tile_height)))
+
 
 screen.blit(background, (0,0))
+
+
+
+
 
 running = True
 
@@ -20,6 +45,8 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    clock.tick()
+    pygame.display.set_caption(f"CHOMP {clock.get_fps():3f}")
 
     screen.blit(puffer_fish, (WIDTH/2, HEIGHT/2))
     pygame.display.flip()
