@@ -36,7 +36,7 @@ for p in range(num_plants):
 screen.blit(background, (0,0))
 
 
-
+game_font = pygame.font.SysFont('impact', 120)
 
 
 running = True
@@ -45,6 +45,11 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    screen.blit(background, (0,0))
+    font_surface = game_font.render('CHOMP', 1, (199, 23, 4))
+    f_width = font_surface.get_width()
+    f_height = font_surface.get_height()
+    screen.blit(font_surface, (WIDTH/2-f_width/2, HEIGHT/2-f_height/2))
     clock.tick()
     pygame.display.set_caption(f"CHOMP {clock.get_fps():3f}")
 
