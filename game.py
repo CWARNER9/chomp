@@ -38,10 +38,15 @@ screen.blit(background, (0,0))
 
 game_font = pygame.font.SysFont('impact', 120)
 
+blue_fish_img = pygame.image.load('assets/images/fishTile_077.png')
+blue_fish_img = pygame.transform.flip(blue_fish_img, flip_x=1, flip_y=0)
+blue_fish_x = WIDTH
 
 running = True
-
 while running:
+    blue_fish_x -=1
+    if blue_fish_x <= 0-blue_fish_img.get_width():
+        blue_fish_x=WIDTH
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -50,6 +55,7 @@ while running:
     f_width = font_surface.get_width()
     f_height = font_surface.get_height()
     screen.blit(font_surface, (WIDTH/2-f_width/2, HEIGHT/2-f_height/2))
+    screen.blit(blue_fish_img, (WIDTH-100, HEIGHT/2))
     clock.tick()
     pygame.display.set_caption(f"CHOMP {clock.get_fps():3f}")
 
